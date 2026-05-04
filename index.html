@@ -6,11 +6,22 @@
     <meta content="IE=Edge" http-equiv="X-UA-Compatible">
     <meta name="description" content="Ashik Das T.H | Portfolio - Flutter Developer">
 
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dasthashik.github.io/portfolio_ashik_das_th_2026_may/">
+    <meta property="og:title" content="Ashik Das T.H | Portfolio">
+    <meta property="og:description" content="Flutter Developer Portfolio - Showcasing mobile and web projects.">
+    <meta property="og:image" content="https://dasthashik.github.io/portfolio_ashik_das_th_2026_may/assets/assets/images/primg.jpeg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dasthashik.github.io/portfolio_ashik_das_th_2026_may/">
+    <meta property="twitter:title" content="Ashik Das T.H | Portfolio">
+    <meta property="twitter:description" content="Flutter Developer Portfolio - Showcasing mobile and web projects.">
+    <meta property="twitter:image" content="https://dasthashik.github.io/portfolio_ashik_das_th_2026_may/assets/assets/images/primg.jpeg">
+
     <title>Ashik Das T.H | Portfolio</title>
     <link rel="manifest" href="manifest.json">
-
-    <!-- Preload the profile image for instant loading -->
-    <link rel="preload" href="assets/images/primg.jpeg" as="image">
 
     <style>
         body {
@@ -33,7 +44,6 @@
           text-align: center;
         }
 
-        /* Immediate Profile Image display */
         .profile-splash {
           width: 110px;
           height: 110px;
@@ -88,8 +98,8 @@
 </head>
 <body>
 <div class="loader-container">
-    <!-- Display profile image IMMEDIATELY -->
-    <img src="assets/images/primg.jpeg" class="profile-splash" alt="Ashik Das T.H">
+    <!-- Updated path to use Flutter's internal asset structure -->
+    <img src="assets/assets/images/primg.jpeg" class="profile-splash" alt="Ashik Das T.H" onerror="this.src='assets/images/primg.jpeg'">
 
     <div class="neon-bar"></div>
     <div class="loading-text">Initializing</div>
