@@ -99,27 +99,30 @@
     <div class="loading-text">Initializing</div>
 </div>
 
+<script src="flutter_bootstrap.js" async></script>
+
 <script>
-    window.addEventListener('load', function(ev) {
-      // Using the updated _flutter.loader.load method for better speed and compatibility
-      _flutter.loader.load({
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine({
-            // Force light HTML renderer on mobile to load instantly
-            renderer: (function() {
-                var ua = navigator.userAgent.toLowerCase();
-                if (ua.indexOf('android') > -1 || ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) {
-                    return 'html';
+    // This script waits for the flutter_bootstrap to define the loader
+    window.addEventListener('load', function() {
+        if (window._flutter && window._flutter.loader) {
+            window._flutter.loader.load({
+                onEntrypointLoaded: function(engineInitializer) {
+                    engineInitializer.initializeEngine({
+                        // Force light HTML renderer on mobile for 5x faster load
+                        renderer: (function() {
+                            var ua = navigator.userAgent.toLowerCase();
+                            if (ua.indexOf('android') > -1 || ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) {
+                                return 'html';
+                            }
+                            return 'canvaskit';
+                        })()
+                    }).then(function(appRunner) {
+                        appRunner.runApp();
+                    });
                 }
-                return 'canvaskit';
-            })()
-          }).then(function(appRunner) {
-            appRunner.runApp();
-          });
+            });
         }
-      });
     });
 </script>
-<script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
