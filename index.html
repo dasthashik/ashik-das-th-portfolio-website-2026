@@ -4,6 +4,7 @@
     <base href="/portfolio_ashik_das_th_2026_may/">
     <meta charset="UTF-8">
     <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Ashik Das T.H | Portfolio - Flutter Developer">
 
     <!-- Open Graph / Facebook / LinkedIn -->
@@ -22,6 +23,7 @@
 
     <title>Ashik Das T.H | Portfolio</title>
     <link rel="manifest" href="manifest.json">
+    <link rel="preload" href="primg.jpeg" as="image">
 
     <style>
         body {
@@ -98,13 +100,34 @@
 </head>
 <body>
 <div class="loader-container">
-    <!-- Simplified path looking at the root of the web folder -->
     <img src="primg.jpeg" class="profile-splash" alt="Ashik Das T.H">
-
     <div class="neon-bar"></div>
     <div class="loading-text">Initializing</div>
 </div>
 
+<script>
+    window.addEventListener('load', function(ev) {
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine({
+            // Force light HTML renderer on mobile to load instantly
+            renderer: (function() {
+                var ua = navigator.userAgent.toLowerCase();
+                if (ua.indexOf('android') > -1 || ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) {
+                    return 'html';
+                }
+                return 'canvaskit';
+            })()
+          }).then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+</script>
 <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
