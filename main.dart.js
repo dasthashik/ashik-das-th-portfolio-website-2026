@@ -92973,7 +92973,7 @@ adS(a){var s=0,r=A.N(t.H),q=1,p=[],o=this,n,m,l,k
 var $async$xq=A.O(function(b,c){if(b===1){p.push(c)
 s=q}for(;;)switch(s){case 0:o.P(new A.atT(o))
 m=A.alT().l(0).split("#")[0]
-n=A.f9(B.d.jp(m,"/")?m+"resume.pdf":m+"/resume.pdf",0,null)
+n=A.f9(B.d.jp(m,"/")?m+"assets/assets/resume.pdf":m+"/assets/assets/resume.pdf",0,null)
 q=3
 s=6
 return A.P(A.JZ(n,B.oL),$async$xq)
