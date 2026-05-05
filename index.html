@@ -7,17 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="description" content="Ashik Das T.H | Portfolio - Flutter Developer">
 
-    <!-- INSTANT IMAGE: Preload for immediate display -->
+    <!-- PRELOAD KEY ASSETS -->
     <link rel="preload" href="primg.jpeg" as="image" fetchpriority="high">
+    <link rel="preload" href="assets/assets/images/smartlife.png" as="image">
+    <link rel="preload" href="assets/assets/images/what_to_cook.png" as="image">
+    <link rel="preload" href="assets/assets/images/whats.png" as="image">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dasthashik.github.io/ashik-das-th-portfolio-website-2026/">
-    <meta property="og:title" content="Ashik Das T.H | Portfolio">
-    <meta property="og:description" content="Flutter Developer Portfolio - Showcasing mobile and web projects.">
-    <meta property="og:image" content="https://dasthashik.github.io/ashik-das-th-portfolio-website-2026/primg.jpeg">
 
     <title>Ashik Das T.H | Portfolio</title>
     <link rel="manifest" href="manifest.json">
@@ -52,7 +49,6 @@
           margin-bottom: 30px;
           object-fit: cover;
           box-shadow: 0 0 40px rgba(0, 238, 255, 0.4);
-          /* Fast entrance animation */
           animation: profilePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
           background-color: #081b29;
         }
@@ -77,9 +73,9 @@
     </style>
 </head>
 <body>
-<div class="loader-container">
-    <img src="primg.jpeg" class="profile-splash" alt="Ashik Das T.H" fetchpriority="high">
-    <div class="loading-text">Ashik Das T.H</div>
+<div class="loader-container" id="splash">
+    <img src="primg.jpeg" class="profile-splash" alt="Ashik Das T.H" onerror="this.style.display='none'">
+    <div class="loading-text">Loading Portfolio...</div>
 </div>
 
 <script src="flutter_bootstrap.js" async></script>
@@ -90,9 +86,8 @@
             window._flutter.loader.load({
                 onEntrypointLoaded: function(engineInitializer) {
                     engineInitializer.initializeEngine({
-                        // Changed to "auto" to fix mobile lag.
-                        // It will use HTML on mobile (fast) and CanvasKit on desktop (pretty).
-                        renderer: "auto",
+                        // FORCING HTML: This is the most stable and fastest for mobile web
+                        renderer: "html",
                         useColorEmoji: true
                     }).then(function(appRunner) {
                         appRunner.runApp();
