@@ -90,8 +90,9 @@
             window._flutter.loader.load({
                 onEntrypointLoaded: function(engineInitializer) {
                     engineInitializer.initializeEngine({
-                        // FORCE CANVASKIT: Fixed laggy scrolling on mobile browsers
-                        renderer: "canvaskit",
+                        // Changed to "auto" to fix mobile lag.
+                        // It will use HTML on mobile (fast) and CanvasKit on desktop (pretty).
+                        renderer: "auto",
                         useColorEmoji: true
                     }).then(function(appRunner) {
                         appRunner.runApp();
