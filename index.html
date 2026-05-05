@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="/portfolio_ashik_das_th_2026_may/">
+    <base href="/">
     <meta charset="UTF-8">
     <meta content="IE=Edge" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="description" content="Ashik Das T.H | Portfolio - Flutter Developer">
 
+    <!-- INSTANT IMAGE: Preload for immediate display -->
+    <link rel="preload" href="primg.jpeg" as="image" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dasthashik.github.io/portfolio_ashik_das_th_2026_may/">
+    <meta property="og:url" content="https://dasthashik.github.io/ashik-das-th-portfolio-website-2026/">
     <meta property="og:title" content="Ashik Das T.H | Portfolio">
     <meta property="og:description" content="Flutter Developer Portfolio - Showcasing mobile and web projects.">
-    <meta property="og:image" content="https://dasthashik.github.io/portfolio_ashik_das_th_2026_may/primg.jpeg">
+    <meta property="og:image" content="https://dasthashik.github.io/ashik-das-th-portfolio-website-2026/primg.jpeg">
 
     <title>Ashik Das T.H | Portfolio</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="preload" href="primg.jpeg" as="image">
 
     <style>
         body {
@@ -29,93 +33,66 @@
           align-items: center;
           height: 100vh;
           font-family: 'Poppins', sans-serif;
-          touch-action: manipulation;
+          touch-action: none;
         }
 
         .loader-container {
           display: flex;
           flex-direction: column;
           align-items: center;
-          width: 250px;
+          width: 300px;
           text-align: center;
         }
 
         .profile-splash {
-          width: 110px;
-          height: 110px;
+          width: 140px;
+          height: 140px;
           border-radius: 50%;
-          border: 3px solid #00EEFF;
-          margin-bottom: 25px;
+          border: 4px solid #00EEFF;
+          margin-bottom: 30px;
           object-fit: cover;
-          box-shadow: 0 0 25px rgba(0, 238, 255, 0.4);
-          animation: fadeIn 0.6s ease-out;
+          box-shadow: 0 0 40px rgba(0, 238, 255, 0.4);
+          /* Fast entrance animation */
+          animation: profilePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+          background-color: #081b29;
         }
 
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        .neon-bar {
-          width: 150px;
-          height: 4px;
-          background: rgba(0, 238, 255, 0.1);
-          border-radius: 10px;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .neon-bar::after {
-          content: '';
-          position: absolute;
-          left: -50%;
-          width: 50%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, #00EEFF, transparent);
-          animation: loading 1.5s infinite ease-in-out;
-          box-shadow: 0 0 15px #00EEFF;
-        }
-
-        @keyframes loading {
-          0% { left: -50%; }
-          100% { left: 100%; }
+        @keyframes profilePop {
+          0% { opacity: 0; transform: scale(0.7); }
+          100% { opacity: 1; transform: scale(1); }
         }
 
         .loading-text {
-          margin-top: 15px;
+          margin-top: 25px;
           color: #00EEFF;
-          font-size: 13px;
-          font-weight: 500;
-          letter-spacing: 4px;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 7px;
           text-transform: uppercase;
-          opacity: 0.7;
+          opacity: 0.9;
+          animation: blink 2s infinite;
         }
+
+        @keyframes blink { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
     </style>
 </head>
 <body>
 <div class="loader-container">
-    <img src="primg.jpeg" class="profile-splash" alt="Ashik Das T.H">
-    <div class="neon-bar"></div>
-    <div class="loading-text">Initializing</div>
+    <img src="primg.jpeg" class="profile-splash" alt="Ashik Das T.H" fetchpriority="high">
+    <div class="loading-text">Ashik Das T.H</div>
 </div>
 
 <script src="flutter_bootstrap.js" async></script>
 
 <script>
-    // This script waits for the flutter_bootstrap to define the loader
     window.addEventListener('load', function() {
         if (window._flutter && window._flutter.loader) {
             window._flutter.loader.load({
                 onEntrypointLoaded: function(engineInitializer) {
                     engineInitializer.initializeEngine({
-                        // Force light HTML renderer on mobile for 5x faster load
-                        renderer: (function() {
-                            var ua = navigator.userAgent.toLowerCase();
-                            if (ua.indexOf('android') > -1 || ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) {
-                                return 'html';
-                            }
-                            return 'canvaskit';
-                        })()
+                        // FORCE CANVASKIT: Fixed laggy scrolling on mobile browsers
+                        renderer: "canvaskit",
+                        useColorEmoji: true
                     }).then(function(appRunner) {
                         appRunner.runApp();
                     });
